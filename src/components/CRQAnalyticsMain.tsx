@@ -244,6 +244,452 @@ const CCB_SUBDOMAIN_MAP: Record<string, string> = {
   "Cen-Core": "IP Core_CCB",
 };
 
+type KpiLeaf = {
+  total: number;
+  open: number;
+  closed: number;
+  rejected: number;
+  sla: string;
+  trend: number;
+};
+
+const KPI_TREE: {
+  SE: {
+    kpi: KpiLeaf;
+    domains: Record<
+      string,
+      { kpi: KpiLeaf; subdomains: Record<string, KpiLeaf> }
+    >;
+  };
+  CCB: {
+    kpi: KpiLeaf;
+    domains: Record<
+      string,
+      { kpi: KpiLeaf; subdomains: Record<string, KpiLeaf> }
+    >;
+  };
+} = {
+  // ── SE ──────────────────────────────────────────────────────────────────────
+  SE: {
+    kpi: {
+      total: 74,
+      open: 29,
+      closed: 38,
+      rejected: 7,
+      sla: "83%",
+      trend: 5.2,
+    },
+    domains: {
+      "IP Core": {
+        // 8 + 9 + 7 = 24
+        kpi: {
+          total: 24,
+          open: 10,
+          closed: 12,
+          rejected: 2,
+          sla: "81%",
+          trend: 4.1,
+        },
+        subdomains: {
+          "MPLS-Core": {
+            total: 8,
+            open: 3,
+            closed: 4,
+            rejected: 1,
+            sla: "80%",
+            trend: 3.5,
+          },
+          "BRAS-Core": {
+            total: 9,
+            open: 4,
+            closed: 4,
+            rejected: 1,
+            sla: "79%",
+            trend: 2.8,
+          },
+          "CEN-Core": {
+            total: 7,
+            open: 3,
+            closed: 4,
+            rejected: 0,
+            sla: "85%",
+            trend: 5.0,
+          },
+        },
+      },
+      Packet: {
+        // 8 + 6 = 14
+        kpi: {
+          total: 14,
+          open: 5,
+          closed: 7,
+          rejected: 2,
+          sla: "79%",
+          trend: 3.2,
+        },
+        subdomains: {
+          "Packet-Change": {
+            total: 8,
+            open: 3,
+            closed: 4,
+            rejected: 1,
+            sla: "78%",
+            trend: 3.0,
+          },
+          Packet_NI: {
+            total: 6,
+            open: 2,
+            closed: 3,
+            rejected: 1,
+            sla: "80%",
+            trend: 3.5,
+          },
+        },
+      },
+      "Embedded Support": {
+        kpi: {
+          total: 12,
+          open: 4,
+          closed: 7,
+          rejected: 1,
+          sla: "86%",
+          trend: 6.0,
+        },
+        subdomains: {
+          All: {
+            total: 12,
+            open: 4,
+            closed: 7,
+            rejected: 1,
+            sla: "86%",
+            trend: 6.0,
+          },
+        },
+      },
+      "IP Access": {
+        // 4 + 4 + 3 = 11
+        kpi: {
+          total: 11,
+          open: 5,
+          closed: 5,
+          rejected: 1,
+          sla: "82%",
+          trend: 4.5,
+        },
+        subdomains: {
+          "MPLS-Access": {
+            total: 4,
+            open: 2,
+            closed: 2,
+            rejected: 0,
+            sla: "83%",
+            trend: 4.0,
+          },
+          "CEN-Access": {
+            total: 4,
+            open: 2,
+            closed: 2,
+            rejected: 0,
+            sla: "81%",
+            trend: 3.8,
+          },
+          "OLT Access": {
+            total: 3,
+            open: 1,
+            closed: 1,
+            rejected: 1,
+            sla: "82%",
+            trend: 5.5,
+          },
+        },
+      },
+      Optics: {
+        // 2 + 2 + 2 + 2 = 8
+        kpi: {
+          total: 8,
+          open: 3,
+          closed: 4,
+          rejected: 1,
+          sla: "85%",
+          trend: 2.5,
+        },
+        subdomains: {
+          Network_expansion: {
+            total: 2,
+            open: 1,
+            closed: 1,
+            rejected: 0,
+            sla: "85%",
+            trend: 2.0,
+          },
+          NNI: {
+            total: 2,
+            open: 1,
+            closed: 1,
+            rejected: 0,
+            sla: "84%",
+            trend: 2.5,
+          },
+          "OTN/LCD": {
+            total: 2,
+            open: 0,
+            closed: 1,
+            rejected: 1,
+            sla: "86%",
+            trend: 3.0,
+          },
+          Project: {
+            total: 2,
+            open: 1,
+            closed: 1,
+            rejected: 0,
+            sla: "86%",
+            trend: 2.0,
+          },
+        },
+      },
+      "Service Optimisation": {
+        kpi: {
+          total: 5,
+          open: 2,
+          closed: 3,
+          rejected: 0,
+          sla: "90%",
+          trend: 1.5,
+        },
+        subdomains: {
+          All: {
+            total: 5,
+            open: 2,
+            closed: 3,
+            rejected: 0,
+            sla: "90%",
+            trend: 1.5,
+          },
+        },
+      },
+    },
+  },
+
+  // ── CCB ─────────────────────────────────────────────────────────────────────
+  CCB: {
+    kpi: {
+      total: 120,
+      open: 48,
+      closed: 62,
+      rejected: 10,
+      sla: "87%",
+      trend: 8.0,
+    },
+    domains: {
+      "IP Core_CCB": {
+        // 13 + 12 + 13 = 38
+        kpi: {
+          total: 38,
+          open: 15,
+          closed: 20,
+          rejected: 3,
+          sla: "84%",
+          trend: 7.2,
+        },
+        subdomains: {
+          "MPLS-Core_CCB": {
+            total: 13,
+            open: 5,
+            closed: 7,
+            rejected: 1,
+            sla: "83%",
+            trend: 6.5,
+          },
+          "BRAS-Core_CCB": {
+            total: 12,
+            open: 5,
+            closed: 6,
+            rejected: 1,
+            sla: "84%",
+            trend: 7.0,
+          },
+          "CEN-Core_CCB": {
+            total: 13,
+            open: 5,
+            closed: 7,
+            rejected: 1,
+            sla: "85%",
+            trend: 8.0,
+          },
+        },
+      },
+      Packet_CCB: {
+        // 11 + 11 = 22
+        kpi: {
+          total: 22,
+          open: 9,
+          closed: 11,
+          rejected: 2,
+          sla: "86%",
+          trend: 6.0,
+        },
+        subdomains: {
+          "Packet-Change_CCB": {
+            total: 11,
+            open: 4,
+            closed: 6,
+            rejected: 1,
+            sla: "86%",
+            trend: 5.8,
+          },
+          Packet_NI_CCB: {
+            total: 11,
+            open: 5,
+            closed: 5,
+            rejected: 1,
+            sla: "86%",
+            trend: 6.2,
+          },
+        },
+      },
+      "Embedded Support_CCB": {
+        kpi: {
+          total: 18,
+          open: 7,
+          closed: 9,
+          rejected: 2,
+          sla: "91%",
+          trend: 9.0,
+        },
+        subdomains: {
+          All: {
+            total: 18,
+            open: 7,
+            closed: 9,
+            rejected: 2,
+            sla: "91%",
+            trend: 9.0,
+          },
+        },
+      },
+      "IP Access_CCB": {
+        // 6 + 6 + 5 = 17
+        kpi: {
+          total: 17,
+          open: 7,
+          closed: 8,
+          rejected: 2,
+          sla: "88%",
+          trend: 7.5,
+        },
+        subdomains: {
+          "MPLS-Access_CCB": {
+            total: 6,
+            open: 3,
+            closed: 3,
+            rejected: 0,
+            sla: "88%",
+            trend: 7.0,
+          },
+          "CEN-Access_CCB": {
+            total: 6,
+            open: 2,
+            closed: 3,
+            rejected: 1,
+            sla: "88%",
+            trend: 7.5,
+          },
+          "OLT Access_CCB": {
+            total: 5,
+            open: 2,
+            closed: 2,
+            rejected: 1,
+            sla: "88%",
+            trend: 8.0,
+          },
+        },
+      },
+      Optics_CCB: {
+        // 7 + 7 = 14
+        kpi: {
+          total: 14,
+          open: 5,
+          closed: 8,
+          rejected: 1,
+          sla: "89%",
+          trend: 5.5,
+        },
+        subdomains: {
+          Network_expansion_CCB: {
+            total: 7,
+            open: 3,
+            closed: 4,
+            rejected: 0,
+            sla: "89%",
+            trend: 5.5,
+          },
+          Project_CCB: {
+            total: 7,
+            open: 2,
+            closed: 4,
+            rejected: 1,
+            sla: "89%",
+            trend: 5.5,
+          },
+        },
+      },
+      "Service Optimisation_CCB": {
+        kpi: {
+          total: 11,
+          open: 5,
+          closed: 6,
+          rejected: 0,
+          sla: "92%",
+          trend: 3.0,
+        },
+        subdomains: {
+          All: {
+            total: 11,
+            open: 5,
+            closed: 6,
+            rejected: 0,
+            sla: "92%",
+            trend: 3.0,
+          },
+        },
+      },
+    },
+  },
+};
+
+// Derived: All-Functions = SE + CCB totals
+const KPI_ALL: KpiLeaf = {
+  total: KPI_TREE.SE.kpi.total + KPI_TREE.CCB.kpi.total, // 74 + 120 = 194
+  open: KPI_TREE.SE.kpi.open + KPI_TREE.CCB.kpi.open, // 29 + 48  =  77
+  closed: KPI_TREE.SE.kpi.closed + KPI_TREE.CCB.kpi.closed, // 38 + 62  = 100
+  rejected: KPI_TREE.SE.kpi.rejected + KPI_TREE.CCB.kpi.rejected, // 7  + 10  =  17
+  sla: "85%",
+  trend: 6.8,
+};
+
+// ─── KPI resolver ─────────────────────────────────────────────────────────────
+function resolveKpi(fn: string, domain: string, subDomain: string): KpiLeaf {
+  // All Functions → ignore domain/subdomain
+  if (fn !== "SE" && fn !== "CCB") return KPI_ALL;
+
+  const tree = KPI_TREE[fn as "SE" | "CCB"];
+
+  // Function only (All Domains)
+  if (!domain || domain === "All Domains") return tree.kpi;
+
+  const domTree = tree.domains[domain];
+  if (!domTree) return tree.kpi; // unknown domain → graceful fallback
+
+  // Domain only (All Sub-Domains)
+  if (!subDomain || subDomain === "All Sub-Domains") return domTree.kpi;
+
+  const subLeaf = domTree.subdomains[subDomain];
+  if (!subLeaf) return domTree.kpi; // unknown subdomain → fallback to domain
+
+  return subLeaf;
+}
+
 interface PopupColConfig {
   label: string;
   getValue: (row: CRQTableRow, index: number) => string;
@@ -1881,62 +2327,7 @@ const CRQAnalyticsMain: React.FC = () => {
   );
 
   // ── Filter-aware KPI values ───────────────────────────────────────────────
-  //   const kpiValues = useMemo(() => {
-  //     // Live API data takes priority (no domain-level breakdown from API yet)
-  //     if (data?.kpi) {
-  //       return {
-  //         total:    { value: data.kpi.totalCrq,       sub: "All requests", trend: data.kpi.totalTrendPct    },
-  //         open:     { value: data.kpi.openCrq,        sub: "In progress",  trend: data.kpi.openTrendPct     },
-  //         closed:   { value: data.kpi.closedCrq,      sub: "Completed",    trend: data.kpi.closedTrendPct   },
-  //         rejected: { value: data.kpi.rejected,       sub: "Declined",     trend: data.kpi.rejectedTrendPct },
-  //         sla:      { value: `${data.kpi.slaScore}%`, sub: "On-time rate", trend: data.kpi.slaTrendPct      },
-  //       };
-  //     }
-
-  //     // ── Resolve which mock row to use based on function + domain filters ──
-  //     let row: [number | string, number | string, number | string, number | string, string] | null = null;
-
-  //     const fn  = filters.function;
-  //     const dom = filters.domain;
-  //     const sub = filters.subDomain;
-  // if (fn === "SE") {
-  //   if (sub && sub !== "All Sub Domains") {
-  //     const mappedDomain = SE_SUBDOMAIN_MAP[sub];
-
-  //     // ✅ Only use subdomain if it matches selected domain
-  //     if (!dom || dom === "All Domains" || dom === mappedDomain) {
-  //       row = SE_SUBDOMAIN_KPI[sub] ?? SE_SUBDOMAIN_KPI["All Sub Domains"];
-  //     } else {
-  //       // ❌ Invalid combo → fallback to domain
-  //       row = SE_DOMAIN_KPI[dom] ?? SE_DOMAIN_KPI["All Domains"];
-  //     }
-
-  //   } else if (dom && dom !== "All Domains") {
-  //     row = SE_DOMAIN_KPI[dom] ?? SE_DOMAIN_KPI["All Domains"];
-
-  //   } else {
-  //     row = SE_DOMAIN_KPI["All Domains"];
-  //   }
-  // }
-
-  //     // Derive trends: CCB uses MOCK_KPI_CCB base trends, SE uses MOCK_KPI_SE, All uses MOCK_KPI_ALL
-  //     const trendSrc =
-  //       fn === "CCB" ? MOCK_KPI_CCB :
-  //       fn === "SE"  ? MOCK_KPI_SE  :
-  //       MOCK_KPI_ALL;
-
-  //     return {
-  //       total:    { value: row[0], sub: "All requests", trend: trendSrc[0].trend },
-  //       open:     { value: row[1], sub: "In progress",  trend: trendSrc[1].trend },
-  //       closed:   { value: row[2], sub: "Completed",    trend: trendSrc[2].trend },
-  //       rejected: { value: row[3], sub: "Declined",     trend: trendSrc[3].trend },
-  //       sla:      { value: row[4], sub: "On-time rate", trend: trendSrc[4].trend },
-  //     };
-  //   }, [data, filters.function, filters.domain, filters.subDomain ]);
-
-  // ── KPI Resolver ───────────────────────────────────────────────────
   const kpiValues = useMemo(() => {
-    // ✅ API DATA PRIORITY
     if (data?.kpi) {
       return {
         total: {
@@ -1967,79 +2358,13 @@ const CRQAnalyticsMain: React.FC = () => {
       };
     }
 
-    // ── Filters ──────────────────────────────────────────────────────
-    const fn = filters.function;
-    const dom = filters.domain;
-    const sub = filters.subDomain;
-
-    let row: [
-      number | string,
-      number | string,
-      number | string,
-      number | string,
-      string,
-    ];
-
-    // ── CCB LOGIC ────────────────────────────────────────────────────
-    if (fn === "CCB") {
-      if (sub && sub !== "All Sub Domains") {
-        const mappedDomain = CCB_SUBDOMAIN_MAP[sub];
-
-        if (!dom || dom === "All Domains" || dom === mappedDomain) {
-          row = CCB_SUBDOMAIN_KPI[sub] ?? CCB_SUBDOMAIN_KPI["All Sub Domains"];
-        } else {
-          row = CCB_DOMAIN_KPI[dom] ?? CCB_DOMAIN_KPI["All Domains"];
-        }
-      } else if (dom && dom !== "All Domains") {
-        row = CCB_DOMAIN_KPI[dom] ?? CCB_DOMAIN_KPI["All Domains"];
-      } else {
-        row = CCB_DOMAIN_KPI["All Domains"];
-      }
-
-      // ── SE LOGIC ─────────────────────────────────────────────────────
-    } else if (fn === "SE") {
-      if (sub && sub !== "All Sub Domains") {
-        const mappedDomain = SE_SUBDOMAIN_MAP[sub];
-
-        if (!dom || dom === "All Domains" || dom === mappedDomain) {
-          row = SE_SUBDOMAIN_KPI[sub] ?? SE_SUBDOMAIN_KPI["All Sub Domains"];
-        } else {
-          row = SE_DOMAIN_KPI[dom] ?? SE_DOMAIN_KPI["All Domains"];
-        }
-      } else if (dom && dom !== "All Domains") {
-        row = SE_DOMAIN_KPI[dom] ?? SE_DOMAIN_KPI["All Domains"];
-      } else {
-        row = SE_DOMAIN_KPI["All Domains"];
-      }
-
-      // ── ALL FUNCTIONS ────────────────────────────────────────────────
-    } else {
-      const src = MOCK_KPI_ALL;
-      row = [
-        src[0].value,
-        src[1].value,
-        src[2].value,
-        src[3].value,
-        src[4].value as string,
-      ];
-    }
-
-    // ── FINAL SAFETY (NO CRASH GUARANTEE) ────────────────────────────
-    if (!row || !Array.isArray(row)) {
-      console.warn("⚠️ KPI fallback triggered", { fn, dom, sub });
-      row = [0, 0, 0, 0, "0%"];
-    }
-
-    // ── Trend Source ─────────────────────────────────────────────────
-    const trendSrc =
-      fn === "CCB" ? MOCK_KPI_CCB : fn === "SE" ? MOCK_KPI_SE : MOCK_KPI_ALL;
-
+    const r = resolveKpi(filters.function, filters.domain, filters.subDomain);
     return {
-      total: { value: row[0], sub: "All requests", trend: trendSrc[0].trend },
-      open: { value: row[1], sub: "In progress", trend: trendSrc[1].trend },
-      closed: { value: row[2], sub: "Completed", trend: trendSrc[2].trend },
-      rejected: { value: row[3], sub: "Declined", trend: trendSrc[3].trend },
-      sla: { value: row[4], sub: "On-time rate", trend: trendSrc[4].trend },
+      total: { value: r.total, sub: "All requests", trend: r.trend },
+      open: { value: r.open, sub: "In progress", trend: r.trend },
+      closed: { value: r.closed, sub: "Completed", trend: r.trend },
+      rejected: { value: r.rejected, sub: "Declined", trend: r.trend },
+      sla: { value: r.sla, sub: "On-time rate", trend: r.trend },
     };
   }, [data, filters.function, filters.domain, filters.subDomain]);
 
