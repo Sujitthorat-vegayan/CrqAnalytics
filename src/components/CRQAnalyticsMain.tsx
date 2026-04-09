@@ -107,66 +107,66 @@ const BOTTLENECK_PALETTE = [
 ] as const;
 
 // ─── Site Group mock data ─────────────────────────────────────────────────────
+
 const SITE_GROUP_DATA = [
-  { group: "AP", raised: 1483, rejected: 93, closed: 717 },
-  { group: "BH", raised: 990, rejected: 85, closed: 433 },
-  { group: "GJ", raised: 973, rejected: 66, closed: 406 },
-  { group: "HPHP", raised: 1347, rejected: 72, closed: 613 },
-  { group: "J&K", raised: 340, rejected: 18, closed: 145 },
-  { group: "JH", raised: 348, rejected: 34, closed: 144 },
-  { group: "KK", raised: 1140, rejected: 73, closed: 513 },
+  { group: "AP", raised: 21, closed: 23, rejected: 2 },
+  { group: "BH", raised: 43, closed: 15, rejected: 6 },
+  { group: "GJ", raised: 65, closed: 14, rejected: 1 },
+  { group: "HPHP", raised: 12, closed: 21, rejected: 0 },
+  { group: "J&K", raised: 25, closed: 5, rejected: 1 },
+  { group: "JH", raised: 25, closed: 5, rejected: 4 },
+  { group: "KK", raised: 3, closed: 17, rejected: 3 },
 ];
 
 // ─── Rejection Reason mock data ───────────────────────────────────────────────
 const REJECTION_REASONS_ALL = [
-  { reason: "AT Banner not removed", count: 500, pct: 5 },
-  { reason: "Time Constraint", count: 470, pct: 5 },
-  { reason: "Time Constraint- NOC", count: 440, pct: 5 },
-  { reason: "Time Constraint- Ops/Deployment", count: 410, pct: 4 },
-  { reason: "MOP Issue", count: 380, pct: 4 },
-  { reason: "Wrong Flow/BIN/Details in CRQ", count: 350, pct: 4 },
-  { reason: "Network Issue (Server/IT)", count: 330, pct: 3 },
-  { reason: "CYGNET task not in NOC-SE Bin", count: 290, pct: 3 },
-  { reason: "Cancelled due to Wrong Type of CR", count: 260, pct: 3 },
-  { reason: "Commissioning Sheet not available", count: 230, pct: 2 },
-  { reason: "Node reachability issue", count: 200, pct: 2 },
-  { reason: "No response from OEM", count: 170, pct: 2 },
-  { reason: "Customer/Services live in OLT", count: 140, pct: 1 },
-  { reason: "Plan Issue", count: 110, pct: 1 },
-  { reason: "Pre Check failed- Network", count: 80, pct: 1 },
-  { reason: "Pre Check Failed- Planning", count: 50, pct: 1 },
-  { reason: "Redundancy Failure", count: 20, pct: 0 },
-  { reason: "Site Access Issue", count: 10, pct: 0 },
+  { reason: "AT Banner not removed", count: 1, pct: 12 },
+  { reason: "Time Constraint", count: 2, pct: 12 },
+  { reason: "Time Constraint- NOC", count: 3, pct: 12 },
+  { reason: "Time Constraint- Ops/Deployment", count: 2, pct: 12 },
+  { reason: "MOP Issue", count: 2, pct: 12 },
+  { reason: "Wrong Flow/BIN/Details in CRQ", count: 1, pct: 6 },
+  { reason: "Network Issue (Server/IT)", count: 1, pct: 6 },
+  { reason: "CYGNET task not in NOC-SE Bin", count: 1, pct: 6 },
+  { reason: "Cancelled due to Wrong Type of CR", count: 1, pct: 6 },
+  { reason: "Commissioning Sheet not available", count: 1, pct: 6 },
+  { reason: "Node reachability issue", count: 1, pct: 6 },
+  { reason: "No response from OEM", count: 1, pct: 6 },
+  { reason: "Customer/Services live in OLT", count: 1, pct: 6 },
+  { reason: "Plan Issue", count: 0, pct: 0 },
+  { reason: "Pre Check failed- Network", count: 0, pct: 0 },
+  { reason: "Pre Check Failed- Planning", count: 0, pct: 0 },
+  { reason: "Redundancy Failure", count: 0, pct: 0 },
+  { reason: "Site Access Issue", count: 0, pct: 0 },
 ];
 const TOP4_REJECTION_REASONS = REJECTION_REASONS_ALL.slice(0, 4);
 
-// ─── CRQ Aging Heatmap data ───────────────────────────────────────────────────
 const AGING_HEATMAP_DATA = [
-  { bucket: "<2 Days", ccb: 986, se: 622 },
-  { bucket: "2-4 Days", ccb: 408, se: 580 },
-  { bucket: "4-6 Days", ccb: 163, se: 226 },
-  { bucket: "6-8 Days", ccb: 259, se: 397 },
-  { bucket: ">8 Days", ccb: 1012, se: 1821 },
+  { bucket: "<2 Days", ccb: 42, se: 12 },
+  { bucket: "2-4 Days", ccb: 17, se: 12 },
+  { bucket: "4-6 Days", ccb: 7, se: 5 },
+  { bucket: "6-8 Days", ccb: 11, se: 8 },
+  { bucket: ">8 Days", ccb: 43, se: 37 },
 ];
 
 // ─── Open CRQ Domain Wise data ────────────────────────────────────────────────
 const OPEN_CRQ_DOMAIN_DATA = [
-  { domain: "IP Core", ccb: 750, se: 1000 },
-  { domain: "Embedded Support", ccb: 550, se: 600 },
-  { domain: "IP Access", ccb: 500, se: 400 },
-  { domain: "Optics", ccb: 500, se: 400 },
-  { domain: "Service Optimisation", ccb: 450, se: 180 },
-  { domain: "Packet", ccb: 400, se: 150 },
+  { domain: "IP Core", ccb: 15, se: 10 },
+  { domain: "Embedded Support", ccb: 7, se: 4 },
+  { domain: "IP Access", ccb: 7, se: 5 },
+  { domain: "Optics", ccb: 5, se: 3 },
+  { domain: "Service Optimisation", ccb: 5, se: 2 },
+  { domain: "Packet", ccb: 9, se: 5 },
 ];
 
 // ─── Open CRQ Domain Wise — CCB ───────────────────────────────────────────────
 const OPEN_CRQ_DOMAIN_DATA_CCB = [
-  { domain: "IP Core_CCB", ccb: 680, se: 870 },
-  { domain: "Embedded Support_CCB", ccb: 490, se: 530 },
-  { domain: "IP Access_CCB", ccb: 430, se: 350 },
-  { domain: "Optics_CCB", ccb: 410, se: 340 },
-  { domain: "Service Optimisation_CCB", ccb: 380, se: 160 },
-  { domain: "Packet_CCB", ccb: 320, se: 130 },
+  { domain: "IP Core_CCB", ccb: 15, se: 10 },
+  { domain: "Embedded Support_CCB", ccb: 7, se: 4 },
+  { domain: "IP Access_CCB", ccb: 7, se: 5 },
+  { domain: "Optics_CCB", ccb: 5, se: 3 },
+  { domain: "Service Optimisation_CCB", ccb: 5, se: 2 },
+  { domain: "Packet_CCB", ccb: 9, se: 5 },
 ];
 
 // ─── SE KPI mock data ─────────────────────────────────────────────────────────
